@@ -7,9 +7,44 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+
+  const getEmoji = async (word) => {
+    let url = `http://localhost:3001/word/${word}`;
+
+    let test = await axios.get(url);
+    return test.data;
+  };
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleTranslate = async () => {
+    const parsed = input.replace(/\W|_/g, " ");
+    const inputArr = parsed.split(" ");
+    console.log(inputArr);
+
+    let tempInput = input;
+
+    for (let word of inputArr) {
+      let data = await getEmoji(word);
+      if (data.status) {
+        console.log(data);
+        tempInput = tempInput.replace(word, data.emoji);
+      }
+    }
+
+    setOutput(tempInput);
+  };
+
+  const handleClear = () => {};
+
   return (
     <div className="App">
       <>
@@ -19,7 +54,7 @@ function App() {
           gutterBottom
           component="div"
         >
-          Transemojik{" "}
+          Transemojik
         </Typography>{" "}
         <Paper
           sx={{
@@ -37,9 +72,9 @@ function App() {
               id="outlined-multiline-flexible"
               label="Input"
               multiline
-              maxRows={2}
               rows={2}
               fullWidth
+              onChange={handleInput}
             />
             <Stack
               direction="row"
@@ -47,15 +82,20 @@ function App() {
               spacing={2}
             >
               <Button color="secondary">Clear</Button>
-              <Button variant="contained">Translate</Button>
+              <Button onClick={handleTranslate} variant="contained">
+                Translate
+              </Button>
             </Stack>
             <TextField
               id="outlined-multiline-flexible"
               label="Output"
               multiline
-              maxRows={2}
               rows={2}
               fullWidth
+              InputProps={{
+                readOnly: true,
+              }}
+              value={output}
             />
           </Stack>
         </Paper>
