@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  Stack,
+  Paper,
+  TextField,
+  Divider,
+  Button,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <>
+        <Typography
+          sx={{ color: "white" }}
+          variant="h4"
+          gutterBottom
+          component="div"
         >
-          Learn React
-        </a>
-      </header>
+          Transemojik{" "}
+        </Typography>{" "}
+        <Paper
+          sx={{
+            margin: "0 20px",
+            padding: "20px",
+          }}
+        >
+          <Stack
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+          >
+            <TextField
+              id="outlined-multiline-flexible"
+              label="Input"
+              multiline
+              maxRows={2}
+              rows={2}
+              fullWidth
+            />
+            <Stack
+              direction="row"
+              divider={<Divider orientation="vertical" flexItem />}
+              spacing={2}
+            >
+              <Button color="secondary">Clear</Button>
+              <Button variant="contained">Translate</Button>
+            </Stack>
+            <TextField
+              id="outlined-multiline-flexible"
+              label="Output"
+              multiline
+              maxRows={2}
+              rows={2}
+              fullWidth
+            />
+          </Stack>
+        </Paper>
+      </>
     </div>
   );
 }
