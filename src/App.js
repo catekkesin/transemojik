@@ -7,7 +7,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 function App() {
@@ -42,7 +42,10 @@ function App() {
     setOutput(tempInput);
   };
 
-  const handleClear = () => {};
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+  };
 
   return (
     <div className="App">
@@ -80,7 +83,9 @@ function App() {
               divider={<Divider orientation="vertical" flexItem />}
               spacing={2}
             >
-              <Button color="secondary">Clear</Button>
+              <Button onClick={handleClear} color="secondary">
+                Clear
+              </Button>
               <Button onClick={handleTranslate} variant="contained">
                 Translate
               </Button>
