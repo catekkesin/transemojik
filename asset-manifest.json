@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/transemojik/static/css/main.b7ac254d.css",
+    "main.js": "/transemojik/static/js/main.55adc297.js",
+    "index.html": "/transemojik/index.html",
+    "main.b7ac254d.css.map": "/transemojik/static/css/main.b7ac254d.css.map",
+    "main.55adc297.js.map": "/transemojik/static/js/main.55adc297.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b7ac254d.css",
+    "static/js/main.55adc297.js"
+  ]
+}
