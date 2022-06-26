@@ -26,6 +26,7 @@ function App() {
   };
 
   const handleTranslate = async () => {
+    setOutput("");
     const parsed = input.replace(/\W|_/g, " ");
     const inputArr = parsed.split(" ");
     console.log(inputArr);
@@ -77,6 +78,11 @@ function App() {
               rows={2}
               fullWidth
               onChange={handleInput}
+              value={input}
+              helperText={input.length === 200 ? "50 chars max" : ""}
+              inputProps={{
+                maxLength: 200,
+              }}
             />
             <Stack
               direction="row"
