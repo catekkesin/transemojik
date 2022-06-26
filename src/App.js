@@ -15,7 +15,7 @@ function App() {
   const [output, setOutput] = useState("");
 
   const getEmoji = async (word) => {
-    let url = `http://localhost:3001/word/${word}`;
+    let url = `https://transemojik-api.herokuapp.com/word/${word}`;
 
     let test = await axios.get(url);
     return test.data;
@@ -36,10 +36,9 @@ function App() {
       let data = await getEmoji(word);
       if (data.status) {
         console.log(data);
-        tempInput = tempInput.replace(word, data.emoji);
+        tempInput = tempInput.replace(word, data.char);
       }
     }
-
     setOutput(tempInput);
   };
 
